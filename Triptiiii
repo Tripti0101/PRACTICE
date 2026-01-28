@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cauvery Bhavan</title>
+
+    <style>
+        body{
+            background-color: #dae0e9;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container{
+            background: #fff;
+            max-width: 90%;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .heading{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .logo img{
+            width: 90px;
+        }
+        .name h1{
+            font-size: 32px;
+        }
+        .name h2{
+            margin: 5px 0 0;
+            color: #666;
+            font-weight: normal;
+        }
+        .facility h3{
+            font-weight: normal;
+            text-align: center;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .img{
+            text-align: center;
+            margin: 20px 0;
+        }
+        .img img{
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .info{
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .services, .rules{
+            flex: 1;
+            background: #ebe7e7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .services h2, .rules h2{
+            text-align: center;
+            color: black;
+            margin-bottom: 15px;
+        }
+        ul, ol{
+            padding-left: 20px;
+            line-height: 1.5;
+        }
+        .table{
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        table{
+            border-collapse: collapse;
+            width: 60%;
+        }
+        th, td{
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th{
+            color: black;
+        }
+        .link{
+            margin-top: 30px;
+            text-align: center;
+            color: #555;
+        }
+        .link a{
+            color: blue;
+            font-weight: bold;
+        }
+
+        .link a:hover{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="heading">
+            <div class="logo">
+                <marquee><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTugGAyD-uPQfYzwBbaWGccmle5R1u3fr-ZMg&s" style="float:right"></marquee>
+            </div>
+            <div class="name">
+                <h1>Cauvery Bhawan</h1>
+                <h2>Girl's Hostel</h2>
+            </div>
+        </div>
+
+        <div class="facility">
+            <h3>
+                Cauvery Bhawan, the newly constructed girl hostel at present is having 292 rooms (single seated). Common room facilities include newspapers, magazines, indoor games and a color television set. Hostel is equipped with intercom and BSNL landline facility and phone, free of cost for incoming calls only. Hostel mess is run on co-operative basis with the assistance of the students in the form of a mess committee under the overall supervision of MMCA, clerks and wardens. Membership is compulsory for all students residing in the hostel. Students of the hostel are provided with the facilities of deep freezer, water coolers and LPG connection managed by staff of the hostel. All the rooms in the hostel have been provided with furniture, ceiling fan and WI-FI connection. Cauvery bhawan is having its own canteen providing day to day use commodities and snacks, accessible to all the girl students staying in the hostel.  
+            </h3>
+        </div>
+
+        <div class="img">
+            <img src="https://i.ytimg.com/vi/Jn8waZlWQRc/hqdefault.jpg" alt="Hostel image">
+        </div>
+
+        <div class="info">
+            <div class="services">
+                <h2>Hostel Services</h2>
+                <ul>
+                    <li>24×7 security with guards and supervisors</li>
+                    <li>On-site mess and late-night canteen</li>
+                    <li>Common rooms, reading rooms, lifts</li>
+                    <li>Regular cleaning and gardening staff</li>
+                    <li>Nearby basketball & badminton courts</li>
+                </ul>
+            </div>
+
+            <div class="rules">
+                <h2>Hostel Rules</h2>
+                <ol>
+                    <li>No alcohol, tobacco, drugs, or gambling</li>
+                    <li>Strict anti-ragging policy</li>
+                    <li>Stay only in assigned rooms</li>
+                    <li>Maintain cleanliness</li>
+                    <li>Care for hostel property</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="table">
+            <table>
+                <tr>
+                    <th>Room Type</th>
+                    <th>Capacity</th>
+                    <th>Semester Fee</th>
+                </tr>
+                <tr>
+                    <td>Single Seater</td>
+                    <td>1</td>
+                    <td>10000</td>
+                </tr>
+                <tr>
+                    <td>Double Seater</td>
+                    <td>2</td>
+                    <td>7000</td>
+                </tr>
+                <tr>
+                    <td>Triple Seater</td>
+                    <td>3</td>
+                    <td>5000</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="link">
+            <h3>
+                Visit 
+                <a href="mailto:cauverybhawan@nitkkr.ac.in">
+                    cauverybhawan@nitkkr.ac.in
+                </a>
+                for Hostel Admission or Enquiry
+            </h3>
+        </div>
+
+        <div class="textbox">
+            <h4>For any query or feedback, write here</h4>
+            <textarea rows="4" column ="40">Your feedback or query</textarea>
+            <button>Submit</button>
+        </div>
+
+        <div>
+            <input list="Room Seater" placeholder="Room Seater"/>
+            <datalist id="Room Seater">
+                <option value="Single"></option>
+                <option value="Double"></option>
+                <option value="Triple"></option>
+            </datalist>
+        </div>
+        <br><br>
+        <div>
+            <img src="image copy.png" alt="Hostel" width="400" height="379" usemap="#workmap">
+            <map name="workmap">
+                <area shape="rect" coords="2 1 241 358" href="https://nitkkr.ac.in" alt="Nit website" target="_blank">
+                <!-- <area shape="rect" coords="241 1 478 358" href="https://www.google.com" alt="google" target="_blank"> -->
+                <area shape="poly" coords="250,20 470,40 450,360 270,350" href="https://www.google.com" alt="Google" target="_blank">
+            </map>
+        </div>
+        <div>
+            <h3>The frame element</h3>
+            <iframe src="https://www.googlemaps.com" title="Google" frameborder="0"></iframe>
+        </div>
+        <div>
+            <picture>
+                <source media="(min-width: 650px )" srcset="image.png">
+            </picture>
+        </div>
+    </div>
+</body>
+</html>
