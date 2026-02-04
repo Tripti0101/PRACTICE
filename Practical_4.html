@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Feedback Form</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url(https://static.vecteezy.com/system/resources/previews/007/779/170/non_2x/illustration-on-white-background-the-best-estimate-of-performance-the-score-of-five-points-people-leave-feedback-and-comments-successful-work-is-the-highest-score-vector.jpg);
+        }
+
+        .container {
+            width: 420px;
+            margin: 60px auto;
+            background-color: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            color: black;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 9px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: 1px solid whitesmoke;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .rating {
+            margin-top: 8px;
+        }
+
+        .rating label {
+            font-weight: normal;
+            margin-right: 10px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 22px;
+            padding: 12px;
+            background-color: lightgreen;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #43a047;
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            let rating = document.querySelector('input[name="rating"]:checked');
+            if (!rating) {
+                alert("Please select a rating.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Student Feedback Form</h2>
+
+    <form name="feedbackForm" onsubmit="return validateForm()">
+
+        <label>Student Name</label>
+        <input type="text" name="studentName" required>
+
+        <label>Email ID</label>
+        <input type="email" name="email" required>
+
+        <label>Faculty Name</label> 
+        <select name="faculty" required>
+            <option value="">Select Faculty</option>
+            <option>Dr. Sweeti Shah</option>
+            <option>Dr. Shweta Sharma</option>
+            <option>Prof. S.K Jain</option>
+            <option>Prof. M.K Murmu</option>
+            <option>Prof. Dave</option>
+            <option>Dr. Bharati Sinha</option>
+        </select>
+
+        <label>Rating</label>
+        <div class="rating">
+            <label><input type="radio" name="rating"> Excellent</label>
+            <label><input type="radio" name="rating"> Good</label>
+            <label><input type="radio" name="rating"> Average</label>
+            <label><input type="radio" name="rating"> Poor</label>
+        </div>
+
+        <label>Positive Aspects</label>
+        <textarea rows="3" required></textarea>
+
+        <label>Improvement Areas</label>
+        <textarea rows="3" required></textarea>
+
+        <button type="submit">Submit Feedback</button>
+    </form>
+</div>
+
+</body>
+</html>
