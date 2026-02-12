@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Leave Form</title>
+</head>
+<body>
+
+<h2>Student Leave Application Form</h2>
+
+<form action="submit.php">
+
+    <label>Student Name</label>
+    <input type="text" name="Sname" placeholder="Enter your name" required><br><br>
+    <label>Email ID</label>
+    <input type="email" name="email" placeholder="Enter email" required><br><br>
+
+    <label>Student ID</label>
+    <input type="number" name="Sid" placeholder="Enter your id" required><br><br>
+
+    <label>Leave Start Date</label>
+    <input type="date" name="startdate" min="2026-02-04" required><br><br>
+
+    <label>Leave End Date</label>
+    <input type="date" name="enddate" required><br><br>
+
+    <label>Reason Description</label><br>
+    <textarea name="Reason" placeholder="Enter reason here"></textarea><br><br>
+
+    <label>Phone Number</label>
+    <input type="tel" name="phnno" placeholder="12345-67890" pattern="[0-9]{5}-[0-9]{5}" required><br><br>
+
+    <h4>Reason Type</h4>
+    <input type="radio" name="reasonType" value="Medical"> Medical <br>
+    <input type="radio" name="reasonType" value="Urgent"> Urgent <br>
+    <input type="radio" name="reasonType" value="Marriage"> Marriage <br>
+    <input type="radio" name="reasonType" value="Others"> Others <br><br>
+
+    <textarea name="otherReason" placeholder="If other, specify"></textarea><br><br>
+
+    <h4>Location</h4>
+    <input type="checkbox" name="location[]" value="Chandigarh"> Chandigarh <br>
+    <input type="checkbox" name="location[]" value="Shimla"> Shimla <br>
+    <input type="checkbox" name="location[]" value="Amritsar"> Amritsar <br>
+    <input type="checkbox" name="location[]" value="Delhi"> Delhi <br><br>
+
+    <h4>Hostel Block</h4>
+    <select name="Block[]" multiple size="3">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit" onclick="alert('Submitted successfully')">Submit</button>
+
+</form>
+
+</body>
+</html>
