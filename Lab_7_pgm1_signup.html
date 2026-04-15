@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: url(https://tse1.mm.bing.net/th/id/OIP.n4bxlYkrbzt5f4p60T__9gHaEK?rs=1&pid=ImgDetMain&o=7&rm=3);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      background-size: cover;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(15px);
+      padding: 30px;
+      border-radius: 15px;
+      width: 300px;
+      color: white;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    h2 { text-align:center; }
+
+    input {
+      width:100%;
+      padding:10px;
+      margin:10px 0;
+      border:none;
+      border-radius:8px;
+    }
+
+    button {
+      width:100%;
+      padding:10px;
+      border:none;
+      border-radius:20px;
+      background: lightgreen;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    .error {
+      color: blanchedalmond;
+      text-align:center;
+    }
+
+    a {
+      color: blanchedalmond;
+      text-decoration:none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Signup</h2>
+
+  <form id="signupForm">
+    <input type="text" id="username" placeholder="Username">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <input type="password" id="confirm" placeholder="Confirm Password">
+
+    <p class="error" id="error"></p>
+
+    <button type="submit">Register</button>
+    <p style="text-align:center;">Already have account? <a href="Lab_7_pgm1_login">Login</a></p>
+  </form>
+</div>
+
+<script>
+document.getElementById("signupForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+  let confirm = document.getElementById("confirm").value;
+  let error = document.getElementById("error");
+
+  let pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  let strong = /^(?=.*[A-Z])(?=.*[0-9]).{6,}$/;
+
+  error.innerText = "";
+
+  if(!pattern.test(email)){
+    error.innerText = "Invalid Email!";
+    return;
+  }
+
+  if(!strong.test(password)){
+    error.innerText = "Password must contain uppercase & number!";
+    return;
+  }
+
+  if(password !== confirm){
+    error.innerText = "Passwords do not match";
+    return;
+  }
+
+  localStorage.setItem("user", JSON.stringify({email,password}));
+  alert("Registered Successfully ✅");
+});
+</script>
+
+</body>
+</html>

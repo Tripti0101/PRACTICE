@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Weather App</title>
+
+<style>
+    body {
+        font-family: Arial;
+        background-image: url(https://static.vecteezy.com/system/resources/thumbnails/047/066/443/small_2x/pastel-colored-sky-with-soft-fluffy-clouds-creating-a-calming-and-peaceful-atmosphere-the-blue-sky-blends-harmoniously-with-the-pastel-hues-evoking-a-sense-of-tranquility-photo.jpg);
+        text-align: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 50px;
+    }
+
+    .box {
+        background: white;
+        padding: 20px;
+        width: 300px;
+        margin: auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px gray;
+    }
+
+    input {
+        padding: 10px;
+        width: 80%;
+        margin: 10px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background: #007BFF;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    #result {
+        margin-top: 20px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>🌤 Weather App</h2>
+
+    <input type="text" id="city" placeholder="Enter city name">
+    <br>
+
+    <button onclick="getWeather()">Check Weather</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+async function getWeather() {
+
+    let city = document.getElementById("city").value.trim();
+    let apiKey = "33744759add7c4a002a62cf4fb79cbd8";
+    if(city === "") {
+        alert("Enter city name");
+        return;
+    }
+
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city},IN&appid=${apiKey}&units=metric`;
+
+    try {
+        let response = await fetch(url);
+        let data = await response.json();
+
+        if(data.cod != 200){
+            document.getElementById("result").innerHTML =
+                "<p style='color:red;'>City not found</p>";
+            return;
+        }
+
+        document.getElementById("result").innerHTML = `
+            <h3>${data.name}</h3>
+            <p>🌡 Temperature: ${data.main.temp} °C</p>
+            <p>🌥 Condition: ${data.weather[0].description}</p>
+            <p>💧 Humidity: ${data.main.humidity}%</p>
+            <p>🌬 Wind Speed: ${data.wind.speed} m/s</p>
+        `;
+
+    } catch(error) {
+        document.getElementById("result").innerHTML =
+            "<p style='color:red;'>Error fetching data</p>";
+        console.log(error);
+    }
+}
+</script>
+
+</body>
+</html>

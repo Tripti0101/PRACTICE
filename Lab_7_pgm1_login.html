@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: url(https://tse1.mm.bing.net/th/id/OIP.n4bxlYkrbzt5f4p60T__9gHaEK?rs=1&pid=ImgDetMain&o=7&rm=3);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      background-size: cover;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(15px);
+      padding: 30px;
+      border-radius: 15px;
+      width: 300px;
+      color: white;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    h2 { text-align:center; }
+
+    input {
+      width:100%;
+      padding:10px;
+      margin:10px 0;
+      border:none;
+      border-radius:8px;
+    }
+
+    button {
+      width:100%;
+      padding:10px;
+      border:none;
+      border-radius:20px;
+      background: lightgreen;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    .error {
+      color: blanchedalmond;
+      text-align:center;
+    }
+
+    a {
+      color: blanchedalmond;
+      text-decoration:none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Login</h2>
+
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+
+    <p class="error" id="error"></p>
+
+    <button type="submit">Login</button>
+    <p style="text-align:center;">No account? <a href="Lab_7_pgm1_signup.html">Signup</a></p>
+  </form>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+  let error = document.getElementById("error");
+
+  let user = JSON.parse(localStorage.getItem("user"));
+
+  if(user && user.email === email && user.password === password){
+    alert("Login Successful 🎉");
+  } else {
+    error.innerText = "Invalid Credentials ❌";
+  }
+});
+</script>
+
+</body>
+</html>

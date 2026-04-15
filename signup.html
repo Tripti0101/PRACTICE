@@ -1,58 +1,171 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Signup Page</title>
+<meta charset="UTF-8">
+<title>Signup Page</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
 
-        .box {
-            width: 300px;
-            margin: 80px auto;
-            padding: 20px;
-            border: 2px;
-        }
+.box {
+    width: 300px;
+    margin: 80px auto;
+    padding: 20px;
+}
 
-        input {
-            width: 100%;
-            padding: 8px;
-            margin: 8px 0;
-        }
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+}
 
-        button {
-            width: 100%;
-            padding: 8px;
-            background: lightblue;
-            color: white;
-            border: none;
-        }
+button {
+    width: 100%;
+    padding: 8px;
+    background: lightblue;
+    color: white;
+    border: none;
+}
 
-        p {
-            text-align: center;
-            margin-top: 10px;
-        }
-    </style>
+p {
+    text-align: center;
+    margin-top: 10px;
+}
+</style>
+
+<script>
+function registerUser(event){
+    event.preventDefault();
+
+    let username = document.getElementById("signupUsername").value;
+    let email = document.getElementById("signupEmail").value;
+    let password = document.getElementById("signupPassword").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+
+    if(password !== confirmPassword){
+        alert("Passwords do not match!");
+        return;
+    }
+
+    // Store data in browser
+    localStorage.setItem("storedUsername", username);
+    localStorage.setItem("storedPassword", password);
+
+    alert("Signup Successful! Now Login.");
+    window.location.href = "login.html";
+}
+</script>
+
 </head>
 
 <body>
 
-    <div class="box">
-        <h2>Sign Up</h2>
+<div class="box">
+<h2>Sign Up</h2>
 
-        <form>
-            <input type="text" placeholder="Username" required>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required minlength="8">
-            <input type="password" placeholder="Confirm Password" required>
+<form onsubmit="registerUser(event)">
+    <input type="text" id="signupUsername" placeholder="Username" required>
+    <input type="email" id="signupEmail" placeholder="Email" required>
+    <input type="password" id="signupPassword" placeholder="Password" required minlength="8">
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
 
-            <button type="submit">Sign Up</button>
-        </form>
+    <button type="submit">Sign Up</button>
+</form>
 
-        <p>Already have an account? <a href="login.html">Login</a></p>
-    </div>
+<p>Already have an account? <a href="login.html">Login</a></p>
+</div>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Signup Page</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right,rgb(148,161,171),rgb(187,165,187));
+}
+
+.box{
+    width:320px;
+    margin:100px auto;
+    padding:25px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:blue;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:green;
+}
+
+p{
+    text-align:center;
+}
+</style>
+
+<script>
+function registerUser(event){
+    event.preventDefault();
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+
+    if(password !== confirmPassword){
+        alert("Passwords do not match!");
+        return;
+    }
+
+    // Store as object (better method)
+    let user = {
+        username: username,
+        password: password
+    };
+
+    localStorage.setItem("userData", JSON.stringify(user));
+
+    alert("Signup Successful! Now login.");
+    window.location.href = "login.html";
+}
+</script>
+
+</head>
+<body>
+
+<div class="box">
+<h2>Sign Up</h2>
+
+<form onsubmit="registerUser(event)">
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required minlength="8">
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+    <button type="submit">Sign Up</button>
+</form>
+
+<p>Already have an account? <a href="login.html">Login</a></p>
+</div>
 
 </body>
 </html>

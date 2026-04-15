@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Signup</title>
+<link rel="stylesheet" href="Lab_6.css">
+</head>
+
+<body>
+
+<div class="form-box">
+
+<h2>Create Account</h2>
+
+<form id="signupForm">
+
+<div class="input-box">
+<input type="text" id="username" required>
+<label>Username</label>
+</div>
+
+<div class="input-box">
+<input type="text" id="email" required>
+<label>Email</label>
+</div>
+
+<div class="input-box">
+<input type="password" id="password" required>
+<label>Password</label>
+</div>
+
+<div class="input-box">
+<input type="password" id="confirmPassword" required>
+<label>Confirm Password</label>
+</div>
+
+<p class="error" id="signupError"></p>
+
+<button type="submit">Sign Up</button>
+
+<p class="switch">
+Already have an account? <a href="login.html">Login</a>
+</p>
+
+</form>
+</div>
+
+<script>
+
+document.getElementById("signupForm").addEventListener("submit",function(e){
+
+e.preventDefault()
+
+let username=document.getElementById("username").value
+let email=document.getElementById("email").value
+let password=document.getElementById("password").value
+let confirm=document.getElementById("confirmPassword").value
+let error=document.getElementById("signupError")
+
+let pattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+let strong=/^(?=.*[A-Z])(?=.*[0-9]).{6,}$/
+
+if(username.length<3)
+{
+error.innerText="Username must be at least 3 characters"
+return
+}
+
+if(!pattern.test(email))
+{
+error.innerText="Invalid email format"
+return
+}
+
+if(!strong.test(password))
+{
+error.innerText="Password must contain uppercase letter and number"
+return
+}
+
+if(password!==confirm)
+{
+error.innerText="Passwords do not match"
+return
+}
+
+error.innerText=""
+alert("Account Created!")
+
+})
+
+</script>
+
+</body>
+</html>

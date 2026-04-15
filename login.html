@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -19,7 +19,6 @@ body{
     background:linear-gradient(to right,rgb(148, 161, 171),rgb(187, 165, 187));
     border:3px solid #ccc;
     border-radius:10px;
-
     box-shadow:8px 8px 15px rgba(0,0,0,0.2),
                -5px -5px 10px rgba(255,255,255,0.7);
 }
@@ -41,7 +40,7 @@ input{
 button{
     width:100%;
     padding:10px;
-    background: blue;
+    background:blue;
     color:white;
     border:none;
     border-radius:5px;
@@ -60,11 +59,63 @@ button:hover{
 
 .signup a{
     text-decoration:none;
-    color: blue;
+    color:blue;
     font-weight:bold;
 }
 
+/* Captcha same line styling */
+
+.captcha-box{
+    margin-top:10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.captcha-box span{
+    font-weight:bold;
+}
+
+.captcha-box input{
+    width:90px;
+    padding:6px;
+    margin:0;
+}
+
 </style>
+
+<script>
+
+let num1 = Math.floor(Math.random() * 10) + 1;
+let num2 = Math.floor(Math.random() * 10) + 1;
+let correctAnswer = num1 + num2;
+
+window.onload = function(){
+    document.getElementById("captchaQuestion").innerHTML =
+        "Captcha: " + num1 + " + " + num2 + " = ?";
+}
+
+function validateForm(event){
+    event.preventDefault(); // page refresh stop
+
+    let userAnswer = document.getElementById("captchaInput").value;
+
+    if(userAnswer === ""){
+        alert("Please enter captcha answer!");
+        return;
+    }
+
+    if(parseInt(userAnswer) === correctAnswer){
+        alert("Login Successful!");
+        window.location.href = "hostel.html";
+    } else {
+        alert("Wrong Captcha! Try again.");
+    }
+}
+
+</script>
+
 </head>
 
 <body>
@@ -72,15 +123,155 @@ button:hover{
 <div class="box">
     <h2>Login</h2>
 
-    <form action="hostel.html" method="get">
+    <form onsubmit="validateForm(event)">
         <input type="text" placeholder="Username" required>
         <input type="password" placeholder="Password" required minlength="8">
+        
+        <div class="captcha-box">
+            <span id="captchaQuestion"></span>
+            <input type="number" id="captchaInput" placeholder="Answer">
+        </div><br><br>
+        
         <button type="submit">Login</button>
-    </form>
+    </form> 
 
     <div class="signup">
         <a href="signup.html">New User? Sign Up</a>
     </div>
+</div>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:linear-gradient(to right,rgb(148,161,171),rgb(187,165,187));
+}
+
+.box{
+    width:320px;
+    margin:120px auto;
+    padding:25px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:blue;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:green;
+}
+
+.captcha-box{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.captcha-box input{
+    width:80px;
+    margin:0;
+}
+</style>
+
+<script>
+let num1;
+let num2;
+let correctAnswer;
+
+window.onload = function(){
+    generateCaptcha();
+};
+
+function generateCaptcha(){
+    num1 = Math.floor(Math.random() * 10) + 1;
+    num2 = Math.floor(Math.random() * 10) + 1;
+    correctAnswer = num1 + num2;
+
+    document.getElementById("captchaQuestion").innerHTML =
+        num1 + " + " + num2 + " = ?";
+}
+
+function validateForm(event){
+    event.preventDefault();
+
+    let username = document.getElementById("loginUsername").value;
+    let password = document.getElementById("loginPassword").value;
+    let captchaInput = document.getElementById("captchaInput").value;
+
+    let storedData = localStorage.getItem("userData");
+
+    if(!storedData){
+        alert("No user found! Please signup first.");
+        return;
+    }
+
+    let user = JSON.parse(storedData);
+
+    if(captchaInput == ""){
+        alert("Enter captcha!");
+        return;
+    }
+
+    if(parseInt(captchaInput) !== correctAnswer){
+        alert("Wrong captcha!");
+        generateCaptcha();
+        return;
+    }
+
+    if(username === user.username && password === user.password){
+        alert("Login Successful!");
+        window.location.href = "hostel.html";
+    } else {
+        alert("Invalid Username or Password!");
+    }
+}
+</script>
+
+</head>
+<body>
+
+<div class="box">
+<h2>Login</h2>
+
+<form onsubmit="validateForm(event)">
+    <input type="text" id="loginUsername" placeholder="Username" required>
+    <input type="password" id="loginPassword" placeholder="Password" required minlength="8">
+
+    <div class="captcha-box">
+        <span id="captchaQuestion"></span>
+        <input type="number" id="captchaInput" placeholder="Answer">
+    </div>
+
+    <br>
+    <button type="submit">Login</button>
+</form>
+
+<p style="text-align:center;">
+    <a href="signup.html">New User? Sign Up</a>
+</p>
 </div>
 
 </body>

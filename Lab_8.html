@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Quiz App</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-image: url(https://img.freepik.com/free-psd/3d-rendering-questions-background_23-2151455632.jpg);
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #333;
+    }
+
+    .quiz-container {
+        background: white;
+        width: 420px;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        animation: fadeIn 0.6s ease;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .progress {
+        height: 10px;
+        background: #eee;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(to right, #43cea2, #185a9d);
+        transition: width 0.4s ease;
+    }
+
+    .timer {
+        font-size: 14px;
+        text-align: right;
+        margin-bottom: 10px;
+        color: #555;
+    }
+
+    .option {
+        display: block;
+        background: #f1f1f1;
+        padding: 10px;
+        border-radius: 8px;
+        margin: 8px 0;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .option:hover {
+        background: #dfe9ff;
+    }
+
+    .option.correct {
+        background: #c8f7c5;
+    }
+
+    .option.wrong {
+        background: #f7c5c5;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(to right, #ff7e5f, #feb47b);
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+    }
+
+    .score {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 15px;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);} 
+        to {opacity: 1; transform: translateY(0);} 
+    }
+</style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="timer">Time: <span id="time">10</span>s</div>
+    <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+    <h2 id="question">Question here</h2>
+    <div id="options"></div>
+    <button onclick="nextQuestion()">Next</button>
+    <div class="score" id="score"></div>
+</div>
+
+<script>
+const quizData = [
+    {
+        question: "What does HTML stand for?",
+        options: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks Text Language", "None"],
+        answer: 0
+    },
+    {
+        question: "Which language is used for styling web pages?",
+        options: ["HTML", "JQuery", "CSS", "XML"],
+        answer: 2
+    },
+    {
+        question: "Which is not a JavaScript Framework?",
+        options: ["React", "Angular", "Vue", "Django"],
+        answer: 3
+    },
+    {
+        question: "Which is used for web development?",
+        options: ["Python", "HTML", "Java", "All"],
+        answer: 3
+    },
+     {
+        question: "What is the full form of CSS?",
+        options: ["Computer Style Sheets", "Creative Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets"],
+        answer: 2
+    }
+];
+
+let currentQ = 0;
+let score = 0;
+let timeLeft = 10;
+let timer;
+
+function loadQuestion() {
+    resetTimer();
+    const q = quizData[currentQ];
+    document.getElementById("question").innerText = q.question;
+    const optionsDiv = document.getElementById("options");
+    optionsDiv.innerHTML = "";
+
+    q.options.forEach((opt, index) => {
+        const div = document.createElement("div");
+        div.classList.add("option");
+        div.innerText = opt;
+        div.onclick = () => selectOption(div, index);
+        optionsDiv.appendChild(div);
+    });
+
+    updateProgress();
+}
+
+function selectOption(element, index) {
+    const correct = quizData[currentQ].answer;
+    const options = document.querySelectorAll(".option");
+
+    options.forEach(opt => opt.onclick = null);
+
+    if(index === correct) {
+        element.classList.add("correct");
+        score++;
+    } else {
+        element.classList.add("wrong");
+        options[correct].classList.add("correct");
+    }
+
+    document.getElementById("score").innerText = `Score: ${score}`;
+}
+
+function nextQuestion() {
+    currentQ++;
+    if(currentQ < quizData.length) {
+        loadQuestion();
+    } else {
+        document.querySelector(".quiz-container").innerHTML = `<h2>Quiz Finished!</h2><p>Your Score: ${score}/${quizData.length}</p>`;
+    }
+}
+
+function updateProgress() {
+    const progress = ((currentQ) / quizData.length) * 100;
+    document.getElementById("progressBar").style.width = progress + "%";
+}
+
+function startTimer() {
+    timeLeft = 10;
+    document.getElementById("time").innerText = timeLeft;
+
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("time").innerText = timeLeft;
+        if(timeLeft === 0) {
+            clearInterval(timer);
+            nextQuestion();
+        }
+    }, 1000);
+}
+
+function resetTimer() {
+    clearInterval(timer);
+    startTimer();
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>

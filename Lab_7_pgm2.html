@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <style>
+    body {
+      background: url(https://tse1.mm.bing.net/th/id/OIP.qz545iR-btYiGZSAXvTA4gHaHa?rs=1&pid=ImgDetMain&o=7&rm=3);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      font-family:Arial;
+    }
+
+    .todo {
+      background: gray;
+      padding:25px;
+      border-radius:15px;
+      width:300px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h2 { 
+      text-align:center; 
+      color: aliceblue;
+    }
+
+    .input-area {
+      display:flex;
+      margin:15px 0;
+    }
+
+    input {
+      flex:1;
+      padding:10px;
+      border-radius:10px 0 0 10px;
+      border:1px solid #ccc;
+    }
+
+    button {
+      padding:10px;
+      border:none;
+      background:#66a6ff;
+      color:white;
+      border-radius:0 10px 10px 0;
+      cursor:pointer;
+    }
+
+    li {
+      list-style:none;
+      background:#f1f1f1;
+      margin:8px 0;
+      padding:10px;
+      border-radius:10px;
+      display:flex;
+      justify-content:space-between;
+      cursor:pointer;
+    }
+
+    .done {
+      text-decoration: line-through;
+      color: black ;
+    }
+  </style>
+</head>
+<body>
+
+<div class="todo">
+  <h2>My Tasks 📝</h2>
+
+  <div class="input-area">
+    <input type="text" id="task" placeholder="Enter task">
+    <button onclick="addTask()">+</button>
+  </div>
+
+  <ul id="list"></ul>
+</div>
+
+<script>
+function addTask(){
+  let input = document.getElementById("task");
+  let task = input.value;
+
+  if(task === "") return;
+
+  let li = document.createElement("li");
+  li.innerHTML = `${task} <span onclick="removeTask(this)">❌</span>`;
+
+  li.onclick = function(){
+    li.classList.toggle("done");
+  }
+
+  document.getElementById("list").appendChild(li);
+  input.value = "";
+}
+
+function removeTask(el){
+  el.parentElement.remove();
+}
+</script>
+
+</body>
+</html>
